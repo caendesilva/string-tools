@@ -51,9 +51,9 @@ function runTest(string $command, string $input, string $expected, bool $strict 
 /** Run all test cases and print the summary */
 function runTests(): int
 {
-    $total_tests = 0;
-    $passed_tests = 0;
-    $start_time = microtime(true);
+    $totalTests = 0;
+    $passedTests = 0;
+    $startTime = microtime(true);
 
     $tests = [
         test('help', '', 'String Tools CLI', false),
@@ -72,23 +72,23 @@ function runTests(): int
     ];
 
     foreach ($tests as $test) {
-        $total_tests++;
+        $totalTests++;
         if (runTest(...$test)) {
-            $passed_tests++;
+            $passedTests++;
         }
     }
 
-    $end_time = microtime(true);
-    $total_time = round(($end_time - $start_time) * 1000, 2);
+    $endTime = microtime(true);
+    $totalTime = round(($endTime - $startTime) * 1000, 2);
 
     echo str_repeat('-', 40)."\n";
     echo BLUE."Test Summary:\n".RESET;
-    echo "Total tests:  $total_tests\n";
-    echo GREEN."Passed tests: $passed_tests\n".RESET;
-    echo RED.'Failed tests: '.($total_tests - $passed_tests)."\n".RESET;
-    echo YELLOW."Total time:   {$total_time}ms\n".RESET;
+    echo "Total tests:  $totalTests\n";
+    echo GREEN."Passed tests: $passedTests\n".RESET;
+    echo RED.'Failed tests: '.($totalTests - $passedTests)."\n".RESET;
+    echo YELLOW."Total time:   {$totalTime}ms\n".RESET;
 
-    if ($passed_tests === $total_tests) {
+    if ($passedTests === $totalTests) {
         echo GREEN."\n✨ All tests passed! ✨\n".RESET;
 
         return 0; // Success exit code
