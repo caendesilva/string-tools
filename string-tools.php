@@ -491,18 +491,7 @@ Command::main(function (): void {
     $commandList = Commands::commands();
 
     if ($this->hasArgument(0)) {
-        switch ($this->getArgument(0)) {
-            case 'hello':
-                $commands->hello();
-                break;
-            case 'help':
-                $commands->help();
-                break;
-            default:
-                $commands->error('Unknown command: '.$this->getArgument(0));
-                $commands->help();
-                break;
-        }
+        $commands->{$this->getArgument(0)}(...array_slice($this->arguments(), 1));
     } else {
         $commands->error('No command provided.');
         $commands->help();
