@@ -485,7 +485,7 @@ class Commands
 
 // Entry point
 
-Command::main(function (): void {
+Command::main(function (): int {
     /** @var Command $this */
 
     $commands = new Commands();
@@ -494,7 +494,7 @@ Command::main(function (): void {
     if ($this->hasArgument(0)) {
         $command = $this->getArgument(0);
         if (in_array($command, $commandList)) {
-            $commands->$command($this->getArgument(1));
+            return $commands->$command($this->getArgument(1));
         } else {
             $commands->error('Command not found.');
             $commands->help();
@@ -503,4 +503,6 @@ Command::main(function (): void {
         $commands->error('No command provided.');
         $commands->help();
     }
+
+    return 1;
 });
