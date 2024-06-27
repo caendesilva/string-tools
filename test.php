@@ -9,7 +9,7 @@ const BLUE = "\033[34m";
 const MAGENTA = "\033[35m";
 const CYAN = "\033[36m";
 
-function test(string $command, string $input, string $expected, bool $strict = true): void
+function test(string $command, string $input, string $expected, bool $strict = true): bool
 {
     echo MAGENTA."Testing command: $command".RESET."\n";
     echo CYAN.'Input: '.RESET."$input\n";
@@ -37,9 +37,11 @@ function test(string $command, string $input, string $expected, bool $strict = t
     }
 
     echo " (Execution time: {$execution_time}ms)\n\n";
+
+    return $passed;
 }
 
-function runTests(): void
+function runTests(): int
 {
     $total_tests = 0;
     $passed_tests = 0;
@@ -61,11 +63,7 @@ function runTests(): void
 
     foreach ($tests as $test) {
         $total_tests++;
-        ob_start();
-        test(...$test);
-        $output = ob_get_clean();
-        echo $output;
-        if (strpos($output, '✓ PASS') !== false) {
+        if (test(...$test)) {
             $passed_tests++;
         }
     }
@@ -82,9 +80,11 @@ function runTests(): void
 
     if ($passed_tests === $total_tests) {
         echo GREEN."\n✨ All tests passed! ✨\n".RESET;
+        return 0; // Success exit code
     } else {
         echo RED."\n❌ Some tests failed. Please review the output above.\n".RESET;
+        return 1; // Failure exit code
     }
 }
 
-runTests();
+exit(runTests());
