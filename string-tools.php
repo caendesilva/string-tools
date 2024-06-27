@@ -497,5 +497,8 @@ Command::main(function (): int {
         $command = 'help';
     }
 
-    return $commands->$command($this->getArgument(1)) ?? 0;
+    $args = $this->getArgument(1);
+    $call = $commands->$command(...array_filter([$args]));
+
+    return $call ?? 0;
 });
