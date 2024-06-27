@@ -442,9 +442,9 @@ class Commands
 {
     use InteractsWithIO;
 
-    public function hello(): void
+    public function hello(?string $name = 'world'): void
     {
-        $this->info('Hello, World!');
+        $this->info('Hello, '.$name.'!');
     }
 
     public function help(): void
