@@ -459,12 +459,10 @@ class Commands
 
 /** @var Command $this */
 Command::main(function (): void {
-    global $argv;
-
     $commands = new Commands();
 
-    if (isset($argv[1])) {
-        switch ($argv[1]) {
+    if ($this->hasArgument(0)) {
+        switch ($this->getArgument(0)) {
             case 'hello':
                 $commands->hello();
                 break;
@@ -472,7 +470,7 @@ Command::main(function (): void {
                 $commands->help();
                 break;
             default:
-                $commands->error('Unknown command: '.$argv[1]);
+                $commands->error('Unknown command: '.$this->getArgument(0));
                 $commands->help();
                 break;
         }
