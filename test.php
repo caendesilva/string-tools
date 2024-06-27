@@ -59,6 +59,8 @@ function runTests(): int
         ['headline', 'hello world', 'Hello World'],
         ['slug', 'hello world', 'hello-world'],
         ['sentence', 'hello world', 'Hello world'],
+        ['count', 'hello world', '11'],
+        ['words', 'hello world', '2'],
     ];
 
     foreach ($tests as $test) {

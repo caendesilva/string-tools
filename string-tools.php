@@ -729,6 +729,18 @@ class Commands
         return ucfirst(strtolower(Str::headline($string)));
     }
 
+    /** Count the number of characters in a string. */
+    public function count(string $string): string
+    {
+        return mb_strlen($string);
+    }
+
+    /** Count the number of words in a string. */
+    public function words(string $string): string
+    {
+        return str_word_count($string);
+    }
+
     /** @return array<string, string> Command name over description */
     public static function list(): array
     {
