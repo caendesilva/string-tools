@@ -442,21 +442,27 @@ class Commands
 {
     use InteractsWithIO;
 
+    /**
+     * Display the help screen.
+     */
     public function help(): void
     {
         $this->formatted('<info>String Tools CLI</info> <comment>--</comment> <warning>Usage:</warning> string-tools <command> [args]');
 
-        foreach (Commands::list() as $command) {
-            $this->line('  '.$command);
+        foreach (Commands::list() as $command => $description) {
+            $this->line('  '.$command.' - '.$description);
         }
     }
 
+    /**
+     * Hello world command.
+     */
     public function hello(?string $name = 'world'): void
     {
         $this->info('Hello, '.$name.'!');
     }
 
-    /** @return string[] */
+    /** @return array<string, string> Command name over description */
     public static function list(): array
     {
         // Get all public methods in this class that are not inherited or static
@@ -477,11 +483,27 @@ class Commands
                 && $method->getFileName() === $classFileName
                 && $method->getStartLine() >= $classStartLine
                 && $method->getStartLine() <= $classEndLine) {
-                $commands[] = $method->name;
+
+                $commands[$method->name] = static::parseDocComment($method->getDocComment());
             }
         }
 
         return $commands;
+    }
+
+    protected static function parseDocComment(string $docComment): string
+    {
+        $lines = explode("\n", $docComment);
+        $description = '';
+        foreach ($lines as $line) {
+            $line = trim($line, "/* \t");
+            if (str_starts_with($line, '@')) {
+                break;
+            }
+            $description .= $line;
+        }
+
+        return $description;
     }
 }
 
@@ -490,7 +512,7 @@ class Commands
 Command::main(function (): int {
     /** @var Command $this */
     $commands = new Commands();
-    $commandList = Commands::list();
+    $commandList = array_keys(Commands::list());
 
     if ($this->hasArgument(0) && in_array($this->getArgument(0), $commandList)) {
         $command = $this->getArgument(0);
