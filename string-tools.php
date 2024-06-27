@@ -455,7 +455,7 @@ class Commands
     }
 
     /** @return string[] */
-    public static function commands(): array
+    public static function list(): array
     {
         // Get all public methods in this class that are not inherited or static
 
@@ -489,7 +489,7 @@ Command::main(function (): void {
     /** @var Command $this */
 
     $commands = new Commands();
-    $commandList = Commands::commands();
+    $commandList = Commands::list();
 
     if ($this->hasArgument(0)) {
         $command = $this->getArgument(0);
