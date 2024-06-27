@@ -438,6 +438,8 @@ if (! function_exists('task')) {
 
 // Main logic
 
+// Entry point
+
 Command::main(function (): void {
     $this->info('Welcome to MinimaPHP!');
 });
