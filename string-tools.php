@@ -442,11 +442,6 @@ class Commands
 {
     use InteractsWithIO;
 
-    public function hello(?string $name = 'world'): void
-    {
-        $this->info('Hello, '.$name.'!');
-    }
-
     public function help(): void
     {
         $this->formatted('<info>String Tools CLI</info> <comment>--</comment> <warning>Usage:</warning> string-tools <command> [args]');
@@ -454,6 +449,11 @@ class Commands
         foreach (Commands::list() as $command) {
             $this->line('  '.$command);
         }
+    }
+
+    public function hello(?string $name = 'world'): void
+    {
+        $this->info('Hello, '.$name.'!');
     }
 
     /** @return string[] */
