@@ -436,6 +436,17 @@ if (! function_exists('task')) {
     }
 }
 
+/**
+ * Cherry-picked from the Laravel Str class.
+ *
+ * @link https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/Str.php
+ * @license MIT License
+ */
+class Str
+{
+    //
+}
+
 // Main logic
 
 class Commands
