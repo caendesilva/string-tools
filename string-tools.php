@@ -259,8 +259,8 @@ function loadMinima(): void
 
     class Command
     {
-        use InteractsWithIO;
         use AccessesArguments;
+        use InteractsWithIO;
 
         protected Output $output;
 
@@ -330,10 +330,10 @@ function loadMinima(): void
                 return static::OBJECT_OPEN.$data::class.static::OBJECT_CLOSE;
             }
 
-            return (string)$data;
+            return (string) $data;
         }
 
-        protected function null(null|string $value): string
+        protected function null(?string $value): string
         {
             return static::NULL;
         }
