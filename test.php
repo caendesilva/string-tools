@@ -1,8 +1,5 @@
 <?php
 
-// The declared test cases
-$tests = [];
-
 test('help', '', 'String Tools CLI', false);
 test('kebab', 'Hello World', 'hello-world');
 test('snake', 'Hello World', 'hello_world');
@@ -29,9 +26,7 @@ const CYAN = "\033[36m";
 /** Declare a test case */
 function test(string $command, string $input, string $expected, bool $strict = true): void
 {
-    global $tests;
-
-    $tests[] = [$command, $input, $expected, $strict];
+    TestSuite::$tests[] = [$command, $input, $expected, $strict];
 }
 
 /** Run a test case and print the result */
@@ -74,7 +69,7 @@ function runTests(): int
     $passedTests = 0;
     $startTime = microtime(true);
 
-    global $tests;
+    $tests = TestSuite::$tests;
 
     foreach ($tests as $test) {
         $totalTests++;
@@ -102,6 +97,11 @@ function runTests(): int
 
         return 1; // Failure exit code
     }
+}
+
+class TestSuite
+{
+    public static array $tests = [];
 }
 
 exit(runTests());
