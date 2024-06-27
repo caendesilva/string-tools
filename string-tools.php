@@ -513,7 +513,13 @@ Command::main(function (): int {
     }
 
     $args = $this->getArgument(1);
-    $call = $commands->$command(...array_filter([$args]));
+    try {
+        $call = $commands->$command(...array_filter([$args]));
+    } catch (ArgumentCountError $exception) {
+        $this->error($exception->getMessage());
+        $this->line("Usage: string-tools $command [args]");
+        return 1;
+    }
 
     if (is_string($call)) {
         $this->line($call);
