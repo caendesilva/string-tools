@@ -515,5 +515,10 @@ Command::main(function (): int {
     $args = $this->getArgument(1);
     $call = $commands->$command(...array_filter([$args]));
 
+    if (is_string($call)) {
+        $this->line($call);
+        return 0;
+    }
+
     return $call ?? 0;
 });
