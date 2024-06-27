@@ -3,6 +3,8 @@
 
 loadMinima();
 
+// Main logic
+
 Command::main(function (): void {
     $this->info('Welcome to MinimaPHP!');
 });
