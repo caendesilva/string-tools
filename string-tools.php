@@ -484,7 +484,7 @@ class Commands
                 && $method->getStartLine() >= $classStartLine
                 && $method->getStartLine() <= $classEndLine) {
 
-                $commands[$method->name] = static::parseDocComment($method->getDocComment());
+                $commands[$method->name] = static::parseDocComment($method->getDocComment() ?: 'No description provided.');
             }
         }
 
