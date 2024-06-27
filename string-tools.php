@@ -729,6 +729,22 @@ class Commands
         return ucfirst(strtolower(Str::headline($string)));
     }
 
+    /** Reverse the order of lines in a string. */
+    public function lr(string $string): string
+    {
+        if (PHP_OS_FAMILY === 'Windows') {
+            // Windows does not support multi-line input
+            $stream = '';
+            do {
+                $line = Input::getline();
+                $stream .= $line."\n";
+            } while ($line !== '');
+
+            $string = trim($string."\n".$stream);
+        }
+        return implode("\n", array_reverse(explode("\n", $string)));
+    }
+
     /** @return array<string, string> Command name over description */
     public static function list(): array
     {
