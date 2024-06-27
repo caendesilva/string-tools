@@ -80,9 +80,11 @@ function runTests(): int
 
     if ($passed_tests === $total_tests) {
         echo GREEN."\n✨ All tests passed! ✨\n".RESET;
+
         return 0; // Success exit code
     } else {
         echo RED."\n❌ Some tests failed. Please review the output above.\n".RESET;
+
         return 1; // Failure exit code
     }
 }
