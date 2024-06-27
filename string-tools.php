@@ -571,18 +571,6 @@ class Str
      */
     public static function replace($search, $replace, $subject, $caseSensitive = true)
     {
-        if ($search instanceof Traversable) {
-            $search = collect($search)->all();
-        }
-
-        if ($replace instanceof Traversable) {
-            $replace = collect($replace)->all();
-        }
-
-        if ($subject instanceof Traversable) {
-            $subject = collect($subject)->all();
-        }
-
         return $caseSensitive
             ? str_replace($search, $replace, $subject)
             : str_ireplace($search, $replace, $subject);
