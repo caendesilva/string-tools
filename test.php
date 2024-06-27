@@ -9,7 +9,7 @@ const BLUE = "\033[34m";
 const MAGENTA = "\033[35m";
 const CYAN = "\033[36m";
 
-function test(string $command, string $input, string $expected, bool $strict = true): bool
+function runTest(string $command, string $input, string $expected, bool $strict = true): bool
 {
     echo MAGENTA."Testing command: $command".RESET."\n";
     echo CYAN.'Input: '.RESET."$input\n";
@@ -65,7 +65,7 @@ function runTests(): int
 
     foreach ($tests as $test) {
         $total_tests++;
-        if (test(...$test)) {
+        if (runTest(...$test)) {
             $passed_tests++;
         }
     }
