@@ -471,7 +471,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function kebab($value)
+    public static function kebab($value): string
     {
         return static::snake($value, '-');
     }
@@ -483,7 +483,7 @@ class Str
      * @param  string  $delimiter
      * @return string
      */
-    public static function snake($value, $delimiter = '_')
+    public static function snake($value, $delimiter = '_'): string
     {
         $key = $value;
 
@@ -506,7 +506,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function lower($value)
+    public static function lower($value): string
     {
         return mb_strtolower($value, 'UTF-8');
     }
@@ -517,7 +517,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function camel($value)
+    public static function camel($value): string
     {
         if (isset(static::$camelCache[$value])) {
             return static::$camelCache[$value];
@@ -531,7 +531,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function studly($value)
+    public static function studly($value): string
     {
         $key = $value;
 
@@ -555,7 +555,7 @@ class Str
      * @param  string  $encoding
      * @return string
      */
-    public static function substr($string, $start, $length = null, $encoding = 'UTF-8')
+    public static function substr($string, $start, $length = null, $encoding = 'UTF-8'): string
     {
         return mb_substr($string, $start, $length, $encoding);
     }
@@ -569,7 +569,7 @@ class Str
      * @param  bool  $caseSensitive
      * @return string|string[]
      */
-    public static function replace($search, $replace, $subject, $caseSensitive = true)
+    public static function replace($search, $replace, $subject, $caseSensitive = true): array|string
     {
         return $caseSensitive
             ? str_replace($search, $replace, $subject)
@@ -582,7 +582,7 @@ class Str
      * @param  string  $string
      * @return string
      */
-    public static function ucfirst($string)
+    public static function ucfirst($string): string
     {
         return static::upper(static::substr($string, 0, 1)).static::substr($string, 1);
     }
@@ -593,7 +593,7 @@ class Str
      * @param  string  $string
      * @return string[]
      */
-    public static function ucsplit($string)
+    public static function ucsplit($string): array
     {
         return preg_split('/(?=\p{Lu})/u', $string, -1, PREG_SPLIT_NO_EMPTY);
     }
@@ -604,7 +604,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function upper($value)
+    public static function upper($value): string
     {
         return mb_strtoupper($value, 'UTF-8');
     }
@@ -615,7 +615,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function title($value)
+    public static function title($value): string
     {
         return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
     }
@@ -626,7 +626,7 @@ class Str
      * @param  string  $value
      * @return string
      */
-    public static function headline($value)
+    public static function headline($value): string
     {
         $parts = explode(' ', $value);
 
