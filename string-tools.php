@@ -623,42 +623,50 @@ class Commands
         }
     }
 
+    /** Convert a string to kebab-case. */
     public function kebab(string $string): string
     {
         return Str::kebab($string);
     }
 
+    /** Convert a string to snake_case. */
     public function snake(string $string): string
     {
         return Str::snake($string);
     }
 
+    /** Convert a string to camelCase. */
     public function camel(string $string): string
     {
         return Str::camel($string);
     }
 
     // #[Alias: 'pascal']
+    /** Convert a string to StudlyCaps/PascalCase. */
     public function studly(string $string): string
     {
         return Str::studly($string);
     }
 
+    /** Convert a string to lowercase. */
     public function lower(string $string): string
     {
         return Str::lower($string);
     }
 
+    /** Convert a string to UPPERCASE. */
     public function upper(string $string): string
     {
         return Str::upper($string);
     }
 
+    /** Convert a string to Title Case. */
     public function title(string $string): string
     {
         return Str::title($string);
     }
 
+    /** Convert a string to Headline Case. */
     public function headline(string $string): string
     {
         return Str::headline($string);
