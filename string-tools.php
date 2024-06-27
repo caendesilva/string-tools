@@ -491,18 +491,11 @@ Command::main(function (): int {
     $commands = new Commands();
     $commandList = Commands::list();
 
-    if ($this->hasArgument(0)) {
+    if ($this->hasArgument(0) && in_array($this->getArgument(0), $commandList)) {
         $command = $this->getArgument(0);
-        if (in_array($command, $commandList)) {
-            return $commands->$command($this->getArgument(1));
-        } else {
-            $commands->error('Command not found.');
-            $commands->help();
-        }
     } else {
-        $commands->error('No command provided.');
-        $commands->help();
+        $command = 'help';
     }
 
-    return 1;
+    return $commands->$command($this->getArgument(1)) ?? 0;
 });
