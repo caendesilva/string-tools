@@ -620,8 +620,11 @@ class Commands
 
         $list = Commands::list();
 
+        $longestCommand = max(array_map('strlen', array_keys($list)));
+
         foreach ($list as $command => $description) {
-            $this->formatted("  <warning>$command</warning> <comment>- $description</comment>");
+            $command = str_pad($command, $longestCommand + 1);
+            $this->formatted("  <warning>$command</warning> <comment>$description</comment>");
         }
     }
 
