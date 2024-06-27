@@ -30,4 +30,6 @@ title     Convert a string to Title Case.
 headline  Convert a string to Headline Case.
 slug      Convert a string to a URL-friendly slug.
 sentence  Convert a string to Sentence case.
+count     Count the number of characters in a string.
+words     Count the number of words in a string.
 ```
