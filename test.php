@@ -9,11 +9,13 @@ const BLUE = "\033[34m";
 const MAGENTA = "\033[35m";
 const CYAN = "\033[36m";
 
+/** Declare a test case */
 function test(string $command, string $input, string $expected, bool $strict = true): array
 {
     return [$command, $input, $expected, $strict];
 }
 
+/** Run a test case and print the result */
 function runTest(string $command, string $input, string $expected, bool $strict = true): bool
 {
     echo MAGENTA."Testing command: $command".RESET."\n";
@@ -46,6 +48,7 @@ function runTest(string $command, string $input, string $expected, bool $strict 
     return $passed;
 }
 
+/** Run all test cases and print the summary */
 function runTests(): int
 {
     $total_tests = 0;
