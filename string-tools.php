@@ -449,11 +449,7 @@ class Commands
 
     public function help(): void
     {
-        $this->info('String Tools CLI');
-        $this->line();
-
-        $this->formatted('<warning>Usage:</warning> <comment>string-tools</comment> <comment><command></comment> <comment>[args]</comment>');
-        $this->line();
+        $this->formatted('<info>String Tools CLI</info> <comment>--</comment> <warning>Usage:</warning> string-tools <command> [args]');
 
         foreach (Commands::list() as $command) {
             $this->line('  '.$command);
