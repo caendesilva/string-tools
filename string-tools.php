@@ -270,7 +270,7 @@ class Command
 
         $logic = $logic->bindTo($command, static::class);
 
-        return $logic($command) ?? 0;
+        return $logic() ?? 0;
     }
 }
 
@@ -485,15 +485,17 @@ class Commands
 
 // Entry point
 
-Command::main(function (Command $minima): int {
+Command::main(function (): int {
+    /** @var Command $this */
+
     $commands = new Commands();
     $commandList = Commands::list();
 
-    if ($minima->hasArgument(0) && in_array($minima->getArgument(0), $commandList)) {
-        $command = $minima->getArgument(0);
+    if ($this->hasArgument(0) && in_array($this->getArgument(0), $commandList)) {
+        $command = $this->getArgument(0);
     } else {
         $command = 'help';
     }
 
-    return $commands->$command($minima->getArgument(1)) ?? 0;
+    return $commands->$command($this->getArgument(1)) ?? 0;
 });
