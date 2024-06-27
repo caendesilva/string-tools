@@ -491,7 +491,6 @@ class Commands
 
 Command::main(function (): int {
     /** @var Command $this */
-
     $commands = new Commands();
     $commandList = Commands::list();
 
