@@ -479,11 +479,11 @@ class Str
     /**
      * Convert a string to snake case.
      *
-     * @param  string  $value
-     * @param  string  $delimiter
+     * @param string $value
+     * @param string $delimiter
      * @return string
      */
-    public static function snake($value, $delimiter = '_'): string
+    public static function snake(string $value, string $delimiter = '_'): string
     {
         $key = $value;
 
@@ -514,10 +514,10 @@ class Str
     /**
      * Convert a value to camel case.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
-    public static function camel($value): string
+    public static function camel(string $value): string
     {
         if (isset(static::$camelCache[$value])) {
             return static::$camelCache[$value];
@@ -549,13 +549,13 @@ class Str
     /**
      * Returns the portion of the string specified by the start and length parameters.
      *
-     * @param  string  $string
-     * @param  int  $start
-     * @param  int|null  $length
-     * @param  string  $encoding
+     * @param string $string
+     * @param int $start
+     * @param int|null $length
+     * @param string $encoding
      * @return string
      */
-    public static function substr($string, $start, $length = null, $encoding = 'UTF-8'): string
+    public static function substr(string $string, int $start, int $length = null, string $encoding = 'UTF-8'): string
     {
         return mb_substr($string, $start, $length, $encoding);
     }
@@ -563,13 +563,13 @@ class Str
     /**
      * Replace the given value in the given string.
      *
-     * @param  string|iterable<string>  $search
-     * @param  string|iterable<string>  $replace
-     * @param  string|iterable<string>  $subject
-     * @param  bool  $caseSensitive
+     * @param string|iterable<string> $search
+     * @param string|iterable<string> $replace
+     * @param string|iterable<string> $subject
+     * @param bool $caseSensitive
      * @return string|string[]
      */
-    public static function replace($search, $replace, $subject, $caseSensitive = true): array|string
+    public static function replace(array|string $search, array|string $replace, array|string $subject, bool $caseSensitive = true): array|string
     {
         return $caseSensitive
             ? str_replace($search, $replace, $subject)
@@ -579,10 +579,10 @@ class Str
     /**
      * Make a string's first character uppercase.
      *
-     * @param  string  $string
+     * @param string $string
      * @return string
      */
-    public static function ucfirst($string): string
+    public static function ucfirst(string $string): string
     {
         return static::upper(static::substr($string, 0, 1)).static::substr($string, 1);
     }
@@ -590,10 +590,10 @@ class Str
     /**
      * Split a string into pieces by uppercase characters.
      *
-     * @param  string  $string
+     * @param string $string
      * @return string[]
      */
-    public static function ucsplit($string): array
+    public static function ucsplit(string $string): array
     {
         return preg_split('/(?=\p{Lu})/u', $string, -1, PREG_SPLIT_NO_EMPTY);
     }
@@ -601,10 +601,10 @@ class Str
     /**
      * Convert the given string to upper-case.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
-    public static function upper($value): string
+    public static function upper(string $value): string
     {
         return mb_strtoupper($value, 'UTF-8');
     }
@@ -612,10 +612,10 @@ class Str
     /**
      * Convert the given string to proper case.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
-    public static function title($value): string
+    public static function title(string $value): string
     {
         return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
     }
@@ -623,10 +623,10 @@ class Str
     /**
      * Convert the given string to proper case for each word.
      *
-     * @param  string  $value
+     * @param string $value
      * @return string
      */
-    public static function headline($value): string
+    public static function headline(string $value): string
     {
         $parts = explode(' ', $value);
 
