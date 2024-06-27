@@ -673,6 +673,7 @@ class Commands
         return Str::camel($string);
     }
 
+    // #[Alias: 'pascal']
     public function studly(string $string): string
     {
         return Str::studly($string);
