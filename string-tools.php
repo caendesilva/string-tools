@@ -440,28 +440,23 @@ if (! function_exists('task')) {
  * Cherry-picked from the Laravel Str class.
  *
  * @link https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/Str.php
+ *
  * @license MIT License
  */
 class Str
 {
     /**
      * The cache of snake-cased words.
-     *
-     * @var array
      */
     protected static array $snakeCache = [];
 
     /**
      * The cache of camel-cased words.
-     *
-     * @var array
      */
     protected static array $camelCache = [];
 
     /**
      * The cache of studly-cased words.
-     *
-     * @var array
      */
     protected static array $studlyCache = [];
 
@@ -469,7 +464,6 @@ class Str
      * Convert a string to kebab case.
      *
      * @param  string  $value
-     * @return string
      */
     public static function kebab($value): string
     {
@@ -478,10 +472,6 @@ class Str
 
     /**
      * Convert a string to snake case.
-     *
-     * @param string $value
-     * @param string $delimiter
-     * @return string
      */
     public static function snake(string $value, string $delimiter = '_'): string
     {
@@ -504,7 +494,6 @@ class Str
      * Convert the given string to lower-case.
      *
      * @param  string  $value
-     * @return string
      */
     public static function lower($value): string
     {
@@ -513,9 +502,6 @@ class Str
 
     /**
      * Convert a value to camel case.
-     *
-     * @param string $value
-     * @return string
      */
     public static function camel(string $value): string
     {
@@ -529,7 +515,6 @@ class Str
      * Convert a value to studly caps case.
      *
      * @param  string  $value
-     * @return string
      */
     public static function studly($value): string
     {
@@ -548,14 +533,8 @@ class Str
 
     /**
      * Returns the portion of the string specified by the start and length parameters.
-     *
-     * @param string $string
-     * @param int $start
-     * @param int|null $length
-     * @param string $encoding
-     * @return string
      */
-    public static function substr(string $string, int $start, int $length = null, string $encoding = 'UTF-8'): string
+    public static function substr(string $string, int $start, ?int $length = null, string $encoding = 'UTF-8'): string
     {
         return mb_substr($string, $start, $length, $encoding);
     }
@@ -563,10 +542,9 @@ class Str
     /**
      * Replace the given value in the given string.
      *
-     * @param string|iterable<string> $search
-     * @param string|iterable<string> $replace
-     * @param string|iterable<string> $subject
-     * @param bool $caseSensitive
+     * @param  string|iterable<string>  $search
+     * @param  string|iterable<string>  $replace
+     * @param  string|iterable<string>  $subject
      * @return string|string[]
      */
     public static function replace(array|string $search, array|string $replace, array|string $subject, bool $caseSensitive = true): array|string
@@ -578,9 +556,6 @@ class Str
 
     /**
      * Make a string's first character uppercase.
-     *
-     * @param string $string
-     * @return string
      */
     public static function ucfirst(string $string): string
     {
@@ -590,7 +565,6 @@ class Str
     /**
      * Split a string into pieces by uppercase characters.
      *
-     * @param string $string
      * @return string[]
      */
     public static function ucsplit(string $string): array
@@ -600,9 +574,6 @@ class Str
 
     /**
      * Convert the given string to upper-case.
-     *
-     * @param string $value
-     * @return string
      */
     public static function upper(string $value): string
     {
@@ -611,9 +582,6 @@ class Str
 
     /**
      * Convert the given string to proper case.
-     *
-     * @param string $value
-     * @return string
      */
     public static function title(string $value): string
     {
@@ -622,9 +590,6 @@ class Str
 
     /**
      * Convert the given string to proper case for each word.
-     *
-     * @param string $value
-     * @return string
      */
     public static function headline(string $value): string
     {
@@ -771,15 +736,17 @@ Command::main(function (): int {
         // Remove file and class name from error message
         $message = preg_replace('/passed in .* on line \d+/', 'passed', $message);
         $message = str_replace(['function Commands::', '()'], ["command '", "'"], $message);
-        $message = '<error>'. str_replace("', ", "'</error><comment> - </comment><warning>", $message) . '</warning>';
+        $message = '<error>'.str_replace("', ", "'</error><comment> - </comment><warning>", $message).'</warning>';
 
         $this->formatted($message);
         $this->line("Usage: string-tools $command [args]");
+
         return 1;
     }
 
     if (is_string($call)) {
         $this->line($call);
+
         return 0;
     }
 

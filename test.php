@@ -2,7 +2,7 @@
 
 function test(string $command, string $input, string $expected, bool $strict = true): void
 {
-    $output = shell_exec("php ".__DIR__."/string-tools.php $command $input");
+    $output = shell_exec('php '.__DIR__."/string-tools.php $command $input");
     $output = trim($output);
 
     if ($strict) {
