@@ -11,3 +11,5 @@ function test(string $command, string $input, string $expected): void
         echo "Got: $output\n";
     }
 }
+
+test('kebab', 'Hello World', 'hello-world');
