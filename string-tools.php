@@ -454,14 +454,6 @@ class Commands
         }
     }
 
-    /**
-     * Hello world command.
-     */
-    public function hello(?string $name = 'world'): void
-    {
-        $this->info('Hello, '.$name.'!');
-    }
-
     /** @return array<string, string> Command name over description */
     public static function list(): array
     {
