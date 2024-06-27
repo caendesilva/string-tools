@@ -723,6 +723,12 @@ class Commands
         return Str::slug($string);
     }
 
+    /** Convert a string to Sentence case. */
+    public function sentence(string $string): string
+    {
+        return ucfirst(strtolower(Str::headline($string)));
+    }
+
     /** @return array<string, string> Command name over description */
     public static function list(): array
     {
