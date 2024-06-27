@@ -7,6 +7,8 @@ Command::main(function (): void {
     $this->info('Welcome to MinimaPHP!');
 });
 
+// Bundled vendor dependencies
+
 function loadMinima(): void
 {
     /**
