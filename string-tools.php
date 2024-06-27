@@ -450,8 +450,9 @@ class Commands
     public function help(): void
     {
         $this->info('Available commands:');
-        $this->line('  hello');
-        $this->line('  help');
+        foreach (Commands::list() as $command) {
+            $this->line('  '.$command);
+        }
     }
 
     /** @return string[] */
