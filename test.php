@@ -1,14 +1,5 @@
 <?php
 
-// ANSI color codes
-const RESET = "\033[0m";
-const RED = "\033[31m";
-const GREEN = "\033[32m";
-const YELLOW = "\033[33m";
-const BLUE = "\033[34m";
-const MAGENTA = "\033[35m";
-const CYAN = "\033[36m";
-
 // The declared test cases
 $tests = [];
 
@@ -25,6 +16,15 @@ test('slug', 'hello world', 'hello-world');
 test('sentence', 'hello world', 'Hello world');
 test('count', 'hello world', '11');
 test('words', 'hello world', '2');
+
+// ANSI color codes
+const RESET = "\033[0m";
+const RED = "\033[31m";
+const GREEN = "\033[32m";
+const YELLOW = "\033[33m";
+const BLUE = "\033[34m";
+const MAGENTA = "\033[35m";
+const CYAN = "\033[36m";
 
 /** Declare a test case */
 function test(string $command, string $input, string $expected, bool $strict = true): void
