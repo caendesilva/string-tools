@@ -516,7 +516,14 @@ Command::main(function (): int {
     try {
         $call = $commands->$command(...array_filter([$args]));
     } catch (ArgumentCountError $exception) {
-        $this->error($exception->getMessage());
+        $message = $exception->getMessage();
+
+        // Remove file and class name from error message
+        $message = preg_replace('/passed in .* on line \d+/', 'passed', $message);
+        $message = str_replace(['function Commands::', '()'], ["command '", "'"], $message);
+        $message = '<error>'. str_replace("', ", "'</error><comment> - </comment><warning>", $message) . '</warning>';
+
+        $this->formatted($message);
         $this->line("Usage: string-tools $command [args]");
         return 1;
     }
