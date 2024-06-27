@@ -471,7 +471,7 @@ class Commands
         foreach ($methods as $method) {
             // Check if method is declared in the same file as the class and within the class definition lines
             if ($method->class === __CLASS__
-                && !$method->isStatic()
+                && ! $method->isStatic()
                 && $method->getFileName() === $classFileName
                 && $method->getStartLine() >= $classStartLine
                 && $method->getStartLine() <= $classEndLine) {
