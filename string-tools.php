@@ -453,6 +453,24 @@ class Commands
         $this->line('  hello');
         $this->line('  help');
     }
+
+    /** @return string[] */
+    public static function commands(): array
+    {
+        // Get all public methods in this class that are not inherited or static
+
+        $reflector = new \ReflectionClass(__CLASS__);
+        $methods = $reflector->getMethods(\ReflectionMethod::IS_PUBLIC);
+
+        $commands = [];
+        foreach ($methods as $method) {
+            if ($method->class === __CLASS__ && !$method->isStatic()) {
+                $commands[] = $method->name;
+            }
+        }
+
+        return $commands;
+    }
 }
 
 // Entry point
@@ -460,6 +478,7 @@ class Commands
 /** @var Command $this */
 Command::main(function (): void {
     $commands = new Commands();
+    $commandList = Commands::commands();
 
     if ($this->hasArgument(0)) {
         switch ($this->getArgument(0)) {
