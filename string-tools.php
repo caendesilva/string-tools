@@ -459,8 +459,8 @@ class Commands
     {
         // Get all public methods in this class that are not inherited or static
 
-        $reflector = new \ReflectionClass(__CLASS__);
-        $methods = $reflector->getMethods(\ReflectionMethod::IS_PUBLIC);
+        $reflector = new ReflectionClass(__CLASS__);
+        $methods = $reflector->getMethods(ReflectionMethod::IS_PUBLIC);
 
         // Get file name and start line of the class itself
         $classFileName = $reflector->getFileName();
