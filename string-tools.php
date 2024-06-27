@@ -438,6 +438,23 @@ if (! function_exists('task')) {
 
 // Main logic
 
+class Commands
+{
+    use InteractsWithIO;
+
+    public function hello(): void
+    {
+        $this->info('Hello, World!');
+    }
+
+    public function help(): void
+    {
+        $this->info('Available commands:');
+        $this->line('  hello');
+        $this->line('  help');
+    }
+}
+
 // Entry point
 
 Command::main(function (): void {
