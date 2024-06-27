@@ -13,18 +13,21 @@ mv string-tools.php /usr/local/bin/string-tools # You can also move it as 'st' f
 ## Usage
 
 ```bash
-$ php string-tools.php
+php string-tools.php
+```
 
+```
 String Tools CLI -- Usage: string-tools <command> [args]
-  help      Display the help screen.
-  kebab     Convert a string to kebab-case.
-  snake     Convert a string to snake_case.
-  camel     Convert a string to camelCase.
-  studly    Convert a string to StudlyCaps/PascalCase.
-  lower     Convert a string to lowercase.
-  upper     Convert a string to UPPERCASE.
-  title     Convert a string to Title Case.
-  headline  Convert a string to Headline Case.
-  slug      Convert a string to a URL-friendly slug.
-  sentence  Convert a string to Sentence case.
+
+help      Display the help screen.
+kebab     Convert a string to kebab-case.
+snake     Convert a string to snake_case.
+camel     Convert a string to camelCase.
+studly    Convert a string to StudlyCaps/PascalCase.
+lower     Convert a string to lowercase.
+upper     Convert a string to UPPERCASE.
+title     Convert a string to Title Case.
+headline  Convert a string to Headline Case.
+slug      Convert a string to a URL-friendly slug.
+sentence  Convert a string to Sentence case.
 ```
