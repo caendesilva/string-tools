@@ -23,3 +23,10 @@ function test(string $command, string $input, string $expected, bool $strict = t
 test('help', '', 'String Tools CLI', false);
 
 test('kebab', 'Hello World', 'hello-world');
+test('snake', 'Hello World', 'hello_world');
+test('camel', 'hello world', 'helloWorld');
+test('studly', 'hello world', 'HelloWorld');
+test('lower', 'Hello World', 'hello world');
+test('upper', 'Hello World', 'HELLO WORLD');
+test('title', 'hello world', 'Hello World');
+test('headline', 'hello world', 'Hello World');

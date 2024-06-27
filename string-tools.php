@@ -452,6 +452,20 @@ class Str
     protected static $snakeCache = [];
 
     /**
+     * The cache of camel-cased words.
+     *
+     * @var array
+     */
+    protected static $camelCache = [];
+
+    /**
+     * The cache of studly-cased words.
+     *
+     * @var array
+     */
+    protected static $studlyCache = [];
+
+    /**
      * Convert a string to kebab case.
      *
      * @param  string  $value
@@ -496,6 +510,146 @@ class Str
     {
         return mb_strtolower($value, 'UTF-8');
     }
+
+    /**
+     * Convert a value to camel case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function camel($value)
+    {
+        if (isset(static::$camelCache[$value])) {
+            return static::$camelCache[$value];
+        }
+
+        return static::$camelCache[$value] = lcfirst(static::studly($value));
+    }
+    /**
+     * Convert a value to studly caps case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function studly($value)
+    {
+        $key = $value;
+
+        if (isset(static::$studlyCache[$key])) {
+            return static::$studlyCache[$key];
+        }
+
+        $words = explode(' ', static::replace(['-', '_'], ' ', $value));
+
+        $studlyWords = array_map(fn ($word) => static::ucfirst($word), $words);
+
+        return static::$studlyCache[$key] = implode($studlyWords);
+    }
+
+    /**
+     * Returns the portion of the string specified by the start and length parameters.
+     *
+     * @param  string  $string
+     * @param  int  $start
+     * @param  int|null  $length
+     * @param  string  $encoding
+     * @return string
+     */
+    public static function substr($string, $start, $length = null, $encoding = 'UTF-8')
+    {
+        return mb_substr($string, $start, $length, $encoding);
+    }
+
+    /**
+     * Replace the given value in the given string.
+     *
+     * @param  string|iterable<string>  $search
+     * @param  string|iterable<string>  $replace
+     * @param  string|iterable<string>  $subject
+     * @param  bool  $caseSensitive
+     * @return string|string[]
+     */
+    public static function replace($search, $replace, $subject, $caseSensitive = true)
+    {
+        if ($search instanceof Traversable) {
+            $search = collect($search)->all();
+        }
+
+        if ($replace instanceof Traversable) {
+            $replace = collect($replace)->all();
+        }
+
+        if ($subject instanceof Traversable) {
+            $subject = collect($subject)->all();
+        }
+
+        return $caseSensitive
+            ? str_replace($search, $replace, $subject)
+            : str_ireplace($search, $replace, $subject);
+    }
+
+    /**
+     * Make a string's first character uppercase.
+     *
+     * @param  string  $string
+     * @return string
+     */
+    public static function ucfirst($string)
+    {
+        return static::upper(static::substr($string, 0, 1)).static::substr($string, 1);
+    }
+
+    /**
+     * Split a string into pieces by uppercase characters.
+     *
+     * @param  string  $string
+     * @return string[]
+     */
+    public static function ucsplit($string)
+    {
+        return preg_split('/(?=\p{Lu})/u', $string, -1, PREG_SPLIT_NO_EMPTY);
+    }
+
+    /**
+     * Convert the given string to upper-case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function upper($value)
+    {
+        return mb_strtoupper($value, 'UTF-8');
+    }
+
+    /**
+     * Convert the given string to proper case.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function title($value)
+    {
+        return mb_convert_case($value, MB_CASE_TITLE, 'UTF-8');
+    }
+
+    /**
+     * Convert the given string to proper case for each word.
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public static function headline($value)
+    {
+        $parts = explode(' ', $value);
+
+        $parts = count($parts) > 1
+            ? array_map([static::class, 'title'], $parts)
+            : array_map([static::class, 'title'], static::ucsplit(implode('_', $parts)));
+
+        $collapsed = static::replace(['-', '_', ' '], '_', implode('_', $parts));
+
+        return implode(' ', array_filter(explode('_', $collapsed)));
+    }
 }
 
 // Main logic
@@ -519,6 +673,41 @@ class Commands
     public function kebab(string $string): string
     {
         return Str::kebab($string);
+    }
+
+    public function snake(string $string): string
+    {
+        return Str::snake($string);
+    }
+
+    public function camel(string $string): string
+    {
+        return Str::camel($string);
+    }
+
+    public function studly(string $string): string
+    {
+        return Str::studly($string);
+    }
+
+    public function lower(string $string): string
+    {
+        return Str::lower($string);
+    }
+
+    public function upper(string $string): string
+    {
+        return Str::upper($string);
+    }
+
+    public function title(string $string): string
+    {
+        return Str::title($string);
+    }
+
+    public function headline(string $string): string
+    {
+        return Str::headline($string);
     }
 
     /** @return array<string, string> Command name over description */
