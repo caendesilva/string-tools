@@ -457,6 +457,7 @@ class Commands
 
 // Entry point
 
+/** @var Command $this */
 Command::main(function (): void {
     global $argv;
 
