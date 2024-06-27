@@ -458,5 +458,25 @@ class Commands
 // Entry point
 
 Command::main(function (): void {
-    $this->info('Welcome to MinimaPHP!');
+    global $argv;
+
+    $commands = new Commands();
+
+    if (isset($argv[1])) {
+        switch ($argv[1]) {
+            case 'hello':
+                $commands->hello();
+                break;
+            case 'help':
+                $commands->help();
+                break;
+            default:
+                $commands->error('Unknown command: '.$argv[1]);
+                $commands->help();
+                break;
+        }
+    } else {
+        $commands->error('No command provided.');
+        $commands->help();
+    }
 });
