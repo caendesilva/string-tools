@@ -618,7 +618,9 @@ class Commands
     {
         $this->formatted('<info>String Tools CLI</info> <comment>--</comment> <warning>Usage:</warning> string-tools <command> [args]');
 
-        foreach (Commands::list() as $command => $description) {
+        $list = Commands::list();
+
+        foreach ($list as $command => $description) {
             $this->formatted("  <warning>$command</warning> <comment>- $description</comment>");
         }
     }
