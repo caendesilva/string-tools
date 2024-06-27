@@ -30,3 +30,4 @@ test('lower', 'Hello World', 'hello world');
 test('upper', 'Hello World', 'HELLO WORLD');
 test('title', 'hello world', 'Hello World');
 test('headline', 'hello world', 'Hello World');
+test('slug', 'hello world', 'hello-world');

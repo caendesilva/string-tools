@@ -603,6 +603,46 @@ class Str
 
         return implode(' ', array_filter(explode('_', $collapsed)));
     }
+
+    /**
+     * Generate a URL friendly "slug" from a given string.
+     *
+     * @param  array<string, string>  $dictionary
+     */
+    public static function slug(string $title, string $separator = '-', ?string $language = 'en', array $dictionary = ['@' => 'at']): string
+    {
+        $title = $language ? static::ascii($title) : $title;
+
+        // Convert all dashes/underscores into separator
+        $flip = $separator === '-' ? '_' : '-';
+
+        $title = preg_replace('!['.preg_quote($flip).']+!u', $separator, $title);
+
+        // Replace dictionary words
+        foreach ($dictionary as $key => $value) {
+            $dictionary[$key] = $separator.$value.$separator;
+        }
+
+        $title = str_replace(array_keys($dictionary), array_values($dictionary), $title);
+
+        // Remove all characters that are not the separator, letters, numbers, or whitespace
+        $title = preg_replace('![^'.preg_quote($separator).'\pL\pN\s]+!u', '', static::lower($title));
+
+        // Replace all separator characters and whitespace by a single separator
+        $title = preg_replace('!['.preg_quote($separator).'\s]+!u', $separator, $title);
+
+        return trim($title, $separator);
+    }
+
+    /**
+     * Transliterate a UTF-8 value to ASCII.
+     */
+    public static function ascii(string $value): string
+    {
+        // Package not installed, so just return the value
+
+        return $value;
+    }
 }
 
 // Main logic
@@ -675,6 +715,12 @@ class Commands
     public function headline(string $string): string
     {
         return Str::headline($string);
+    }
+
+    /** Convert a string to a URL-friendly slug. */
+    public function slug(string $string): string
+    {
+        return Str::slug($string);
     }
 
     /** @return array<string, string> Command name over description */
