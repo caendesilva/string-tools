@@ -454,6 +454,11 @@ class Commands
         }
     }
 
+    public function kebab(string $string): string
+    {
+        return Str::kebab($string);
+    }
+
     /** @return array<string, string> Command name over description */
     public static function list(): array
     {
