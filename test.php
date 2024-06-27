@@ -9,10 +9,29 @@ const BLUE = "\033[34m";
 const MAGENTA = "\033[35m";
 const CYAN = "\033[36m";
 
+// The declared test cases
+$tests = [];
+
+test('help', '', 'String Tools CLI', false);
+test('kebab', 'Hello World', 'hello-world');
+test('snake', 'Hello World', 'hello_world');
+test('camel', 'hello world', 'helloWorld');
+test('studly', 'hello world', 'HelloWorld');
+test('lower', 'Hello World', 'hello world');
+test('upper', 'Hello World', 'HELLO WORLD');
+test('title', 'hello world', 'Hello World');
+test('headline', 'hello world', 'Hello World');
+test('slug', 'hello world', 'hello-world');
+test('sentence', 'hello world', 'Hello world');
+test('count', 'hello world', '11');
+test('words', 'hello world', '2');
+
 /** Declare a test case */
-function test(string $command, string $input, string $expected, bool $strict = true): array
+function test(string $command, string $input, string $expected, bool $strict = true): void
 {
-    return [$command, $input, $expected, $strict];
+    global $tests;
+
+    $tests[] = [$command, $input, $expected, $strict];
 }
 
 /** Run a test case and print the result */
@@ -55,21 +74,7 @@ function runTests(): int
     $passedTests = 0;
     $startTime = microtime(true);
 
-    $tests = [
-        test('help', '', 'String Tools CLI', false),
-        test('kebab', 'Hello World', 'hello-world'),
-        test('snake', 'Hello World', 'hello_world'),
-        test('camel', 'hello world', 'helloWorld'),
-        test('studly', 'hello world', 'HelloWorld'),
-        test('lower', 'Hello World', 'hello world'),
-        test('upper', 'Hello World', 'HELLO WORLD'),
-        test('title', 'hello world', 'Hello World'),
-        test('headline', 'hello world', 'Hello World'),
-        test('slug', 'hello world', 'hello-world'),
-        test('sentence', 'hello world', 'Hello world'),
-        test('count', 'hello world', '11'),
-        test('words', 'hello world', '2'),
-    ];
+    global $tests;
 
     foreach ($tests as $test) {
         $totalTests++;
