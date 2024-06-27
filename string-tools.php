@@ -528,7 +528,12 @@ Command::main(function (): int {
         $command = 'help';
     }
 
-    $args = $this->getArgument(1);
+    // Merge all arguments into a single string
+    $args = $this->arguments();
+    // Unset the command name
+    unset($args[0]);
+    $args = implode(' ', $args);
+
     try {
         $call = $commands->$command(...array_filter([$args]));
     } catch (ArgumentCountError $exception) {
