@@ -462,9 +462,19 @@ class Commands
         $reflector = new \ReflectionClass(__CLASS__);
         $methods = $reflector->getMethods(\ReflectionMethod::IS_PUBLIC);
 
+        // Get file name and start line of the class itself
+        $classFileName = $reflector->getFileName();
+        $classStartLine = $reflector->getStartLine();
+        $classEndLine = $reflector->getEndLine();
+
         $commands = [];
         foreach ($methods as $method) {
-            if ($method->class === __CLASS__ && !$method->isStatic()) {
+            // Check if method is declared in the same file as the class and within the class definition lines
+            if ($method->class === __CLASS__
+                && !$method->isStatic()
+                && $method->getFileName() === $classFileName
+                && $method->getStartLine() >= $classStartLine
+                && $method->getStartLine() <= $classEndLine) {
                 $commands[] = $method->name;
             }
         }
