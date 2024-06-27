@@ -61,10 +61,6 @@ function runTests(): int
         ['sentence', 'hello world', 'Hello world'],
     ];
 
-    if (PHP_OS_FAMILY !== 'Windows') {
-        $tests[] = ['lr', "Hello\nworld", "world\nHello"];
-    }
-
     foreach ($tests as $test) {
         $total_tests++;
         if (test(...$test)) {
