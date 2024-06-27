@@ -1,8 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-/** @noinspection PhpUnused */
-
 // Bundled vendor dependencies
 
 /**
