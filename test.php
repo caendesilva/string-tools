@@ -9,6 +9,11 @@ const BLUE = "\033[34m";
 const MAGENTA = "\033[35m";
 const CYAN = "\033[36m";
 
+function test(string $command, string $input, string $expected, bool $strict = true): array
+{
+    return [$command, $input, $expected, $strict];
+}
+
 function runTest(string $command, string $input, string $expected, bool $strict = true): bool
 {
     echo MAGENTA."Testing command: $command".RESET."\n";
@@ -48,19 +53,19 @@ function runTests(): int
     $start_time = microtime(true);
 
     $tests = [
-        ['help', '', 'String Tools CLI', false],
-        ['kebab', 'Hello World', 'hello-world'],
-        ['snake', 'Hello World', 'hello_world'],
-        ['camel', 'hello world', 'helloWorld'],
-        ['studly', 'hello world', 'HelloWorld'],
-        ['lower', 'Hello World', 'hello world'],
-        ['upper', 'Hello World', 'HELLO WORLD'],
-        ['title', 'hello world', 'Hello World'],
-        ['headline', 'hello world', 'Hello World'],
-        ['slug', 'hello world', 'hello-world'],
-        ['sentence', 'hello world', 'Hello world'],
-        ['count', 'hello world', '11'],
-        ['words', 'hello world', '2'],
+        test('help', '', 'String Tools CLI', false),
+        test('kebab', 'Hello World', 'hello-world'),
+        test('snake', 'Hello World', 'hello_world'),
+        test('camel', 'hello world', 'helloWorld'),
+        test('studly', 'hello world', 'HelloWorld'),
+        test('lower', 'Hello World', 'hello world'),
+        test('upper', 'Hello World', 'HELLO WORLD'),
+        test('title', 'hello world', 'Hello World'),
+        test('headline', 'hello world', 'Hello World'),
+        test('slug', 'hello world', 'hello-world'),
+        test('sentence', 'hello world', 'Hello world'),
+        test('count', 'hello world', '11'),
+        test('words', 'hello world', '2'),
     ];
 
     foreach ($tests as $test) {
