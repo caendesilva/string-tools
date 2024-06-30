@@ -1,6 +1,9 @@
 # String Tools CLI
 
-A simple CLI tool to manipulate strings in various ways.
+### A simple CLI tool to manipulate strings in various ways using a single-file PHP executable.
+
+> [!WARNING]
+> This software is designed primarly for internal use, and is highly opinionated to work for my personal workflow. There are no BC promises and things may change at any time. Use at your own risk.
 
 ## Installation
 
@@ -33,3 +36,17 @@ sentence  Convert a string to Sentence case.
 count     Count the number of characters in a string.
 words     Count the number of words in a string.
 ```
+
+### Example: Convert a string to kebab-case
+
+```bash
+string-tools kebab "Hello, World!" # Output: hello-world
+```
+
+## Attribution and License
+
+This software is released under the MIT license. See [LICENSE.md](LICENSE.md) for more details.
+
+The single-file executable bundled modified dependencies from the following MIT-licensed projects:
+- MinimaPHP - https://github.com/caendesilva/MinimaPHP
+- Laravel Illuminate/Support Str class - https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/Str.php
