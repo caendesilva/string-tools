@@ -47,6 +47,6 @@ string-tools kebab "Hello, World!" # Output: hello-world
 
 This software is released under the MIT license. See [LICENSE.md](LICENSE) for more details.
 
-The single-file executable contains bundled dependencies from the following MIT-licensed projects:
+The single-file executable bundled modified dependencies from the following MIT-licensed projects:
 - MinimaPHP - https://github.com/caendesilva/MinimaPHP
 - Laravel Illuminate/Support Str class - https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/Str.php
