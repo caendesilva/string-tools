@@ -1,6 +1,6 @@
 # String Tools CLI
 
-A simple CLI tool to manipulate strings in various ways.
+A simple CLI tool to manipulate strings in various ways using an executable single-file PHP script.
 
 > [!WARNING]
 > This software is designed primarly for internal use, and is highly opinionated to work for my personal workflow. There are no BC promises and things may change at any time. Use at your own risk.
