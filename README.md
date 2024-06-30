@@ -36,3 +36,11 @@ sentence  Convert a string to Sentence case.
 count     Count the number of characters in a string.
 words     Count the number of words in a string.
 ```
+
+## Attribution and License
+
+This software is released under the MIT license. See [LICENSE.md](LICENSE) for more details.
+
+The single-file executable contains bundled dependencies from the following MIT-licensed projects:
+- MinimaPHP - https://github.com/caendesilva/MinimaPHP
+- Laravel Illuminate/Support Str class - https://github.com/laravel/framework/blob/11.x/src/Illuminate/Support/Str.php
