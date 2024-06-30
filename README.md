@@ -37,6 +37,12 @@ count     Count the number of characters in a string.
 words     Count the number of words in a string.
 ```
 
+### Example: Convert a string to kebab-case
+
+```bash
+string-tools kebab "Hello, World!" # Output: hello-world
+```
+
 ## Attribution and License
 
 This software is released under the MIT license. See [LICENSE.md](LICENSE) for more details.
