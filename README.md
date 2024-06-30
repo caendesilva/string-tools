@@ -45,7 +45,7 @@ string-tools kebab "Hello, World!" # Output: hello-world
 
 ## Attribution and License
 
-This software is released under the MIT license. See [LICENSE.md](LICENSE) for more details.
+This software is released under the MIT license. See [LICENSE.md](LICENSE.md) for more details.
 
 The single-file executable bundled modified dependencies from the following MIT-licensed projects:
 - MinimaPHP - https://github.com/caendesilva/MinimaPHP
