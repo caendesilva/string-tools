@@ -2,6 +2,8 @@
 
 A simple CLI tool to manipulate strings in various ways.
 
+> ⚠ Warning: This software is designed primarly for internal use, and is highly opinionated to work for my personal workflow. There are no BC promises and things may change at any time. Use at your own risk.
+
 ## Installation
 
 ```bash
