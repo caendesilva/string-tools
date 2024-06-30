@@ -1,5 +1,9 @@
 <?php
 
+if (extension_loaded('pcov')) {
+    \pcov\start();
+}
+
 test('help', '', 'String Tools CLI', false);
 test('kebab', 'Hello World', 'hello-world');
 test('snake', 'Hello World', 'hello_world');
@@ -88,6 +92,8 @@ function runTests(): int
     echo RED.'Failed tests: '.($totalTests - $passedTests)."\n".RESET;
     echo YELLOW."Total time:   {$totalTime}ms\n".RESET;
 
+    reportCoverage();
+
     if ($passedTests === $totalTests) {
         echo GREEN."\n✨ All tests passed! ✨\n".RESET;
 
@@ -105,3 +111,38 @@ class TestSuite
 }
 
 exit(runTests());
+
+function reportCoverage(): void
+{
+    if (! extension_loaded('pcov')) {
+        echo "PCOV is not installed or enabled.\n";
+
+        return;
+    }
+
+    \pcov\stop();
+    $coverage = \pcov\collect();
+
+    $totalLines = 0;
+    $coveredLines = 0;
+
+    foreach ($coverage as $file => $data) {
+        $fileLines = count(file($file));
+        $totalLines += $fileLines;
+        $coveredLines += count(array_filter($data, function ($line) {
+            return $line > 0;
+        }));
+
+        echo "File: $file\n";
+        echo "Lines: $fileLines\n";
+        echo 'Covered: '.count(array_filter($data, function ($line) {
+            return $line > 0;
+        }))."\n";
+        echo 'Coverage: '.round((count(array_filter($data, function ($line) {
+            return $line > 0;
+        })) / $fileLines) * 100, 2)."%\n\n";
+    }
+
+    $totalCoverage = ($coveredLines / $totalLines) * 100;
+    echo 'Total Coverage: '.round($totalCoverage, 2)."%\n";
+}
