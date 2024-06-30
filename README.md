@@ -16,10 +16,7 @@ mv string-tools.php /usr/local/bin/string-tools # You can also move it as 'st' f
 ## Usage
 
 ```bash
-string-tools # Or `php string-tools.php` if not installed in to your PATH
-
-# Example: Convert a string to kebab-case
-string-tools kebab "Hello, World!" # Output: hello-world
+php string-tools.php
 ```
 
 ```
